@@ -31,12 +31,6 @@ export const AcmeLogo = () => {
 export default function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
-    "Classrooms",
-    "Help & Feedback",
-    "Log Out",
-  ];
-
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent className="sm:hidden" justify="start">
@@ -45,8 +39,10 @@ export default function AppHeader() {
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <Link as={NextLink} href="/">
+            <AcmeLogo />
+            <p className="font-bold text-inherit">TheClassrooms</p>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -54,7 +50,7 @@ export default function AppHeader() {
         <NavbarBrand>
           <Link as={NextLink} href="/">
             <AcmeLogo />
-            <p className="font-bold text-inherit">TheClassroom</p>
+            <p className="font-bold text-inherit">TheClassrooms</p>
           </Link>
         </NavbarBrand>
         <NavbarItem>
@@ -77,20 +73,17 @@ export default function AppHeader() {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              href="#"
-              size="lg"
-            >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
+        <NavbarMenuItem>
+          <Link
+            as={NextLink}
+            className="w-full"
+            color="foreground"
+            href="/classrooms"
+            size="lg"
+          >
+            Classrooms
+          </Link>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );
