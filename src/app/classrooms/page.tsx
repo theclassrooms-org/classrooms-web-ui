@@ -148,7 +148,7 @@ export default function ClassroomsPage() {
         <div>
           <h1 className="text-2xl font-bold">My Classrooms</h1>
           <p className="text-default-500">
-            Classrooms you have joined
+            Classrooms you have joined or created
           </p>
         </div>
 

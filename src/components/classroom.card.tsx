@@ -49,7 +49,7 @@ export default function ClassroomCard({
       <CardFooter>
         <Button
           as={Link}
-          href={`/classrooms/${id}`}
+          href={`/classrooms/${id}/stream`}
           color="primary"
           variant="flat"
           size="sm"
