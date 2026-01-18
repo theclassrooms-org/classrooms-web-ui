@@ -36,8 +36,8 @@ function GoogleIcon() {
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center px-4">
-      <Card className="w-full max-w-md p-4">
+    <div className="flex items-center justify-center md:px-4 px-2">
+      <Card className="w-full max-w-md md:px-4 px-2">
         <CardHeader className="flex flex-col gap-1 items-center">
           <h1 className="text-2xl font-semibold">Sign in</h1>
           <p className="text-sm text-foreground-500">

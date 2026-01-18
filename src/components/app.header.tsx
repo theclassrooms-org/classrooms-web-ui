@@ -11,9 +11,11 @@ import {
   NavbarItem,
   Link,
   Button,
+  Input,
 } from "@heroui/react";
 import NextLink from "next/link";
 import CreateOrJoinClassDropdown from "./classroom.create-or-join";
+import { SearchIcon } from "lucide-react";
 
 export const AcmeLogo = () => {
   return (
@@ -41,7 +43,6 @@ export default function AppHeader() {
         <NavbarBrand>
           <Link as={NextLink} href="/">
             <AcmeLogo />
-            <p className="font-bold text-inherit">TheClassrooms</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -54,8 +55,20 @@ export default function AppHeader() {
           </Link>
         </NavbarBrand>
         <NavbarItem>
+          <Input
+            size="sm"
+            placeholder="Search classrooms..."
+            startContent={
+              <SearchIcon className="text-default-400" size={16} />
+            }
+            classNames={{
+              inputWrapper: "bg-default-100",
+            }}
+          />
+        </NavbarItem>
+        <NavbarItem>
           <Link as={NextLink} color="foreground" href="/classrooms">
-            Classrooms
+            My Classes
           </Link>
         </NavbarItem>
       </NavbarContent>

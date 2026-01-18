@@ -4,8 +4,8 @@ import { Link, Divider } from "@heroui/react";
 
 export default function AppFooter() {
   return (
-    <footer className="mt-12">
-      <Divider className="my-8" />
+    <footer className="mt-8">
+      <Divider className="mt-8" />
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Top */}
         <div className="grid gap-8 md:grid-cols-4">
