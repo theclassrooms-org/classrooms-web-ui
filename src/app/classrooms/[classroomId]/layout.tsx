@@ -6,18 +6,20 @@ import {
   Tab,
 } from "@heroui/react";
 import { usePathname, useRouter } from "next/navigation";
+import { use } from "react";
 
 export default function ClassroomLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { classId: string };
+  params: Promise<{ classroomId: string }>
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { classroomId } = use(params);
 
-  const basePath = `/classrooms/${params.classId}`;
+  const basePath = `/classrooms/${classroomId}`;
 
   const tabs = [
     { key: "stream", label: "Stream" },
