@@ -45,7 +45,7 @@ const AITools: AITool[] = [
 ]
 
 export default function Home() {
-  console.log("API BASE:", process.env.NEXT_PUBLIC_API_BASE);
+  console.log("ENV API BASE:", process.env.NEXT_PUBLIC_API_BASE);
 
   return (
     <main>
