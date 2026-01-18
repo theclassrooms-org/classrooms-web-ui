@@ -1,0 +1,26 @@
+name: Deploy DEV to Vercel
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Deploy to Vercel (DEV)
+        run: |
+          npx vercel deploy \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --project=${{ secrets.VERCEL_PROJECT_ID_DEV }} \
+            --yes
