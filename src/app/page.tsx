@@ -44,7 +44,8 @@ const AITools: AITool[] = [
 ]
 
 export default function Home() {
-  
+  console.log("API BASE:", process.env.NEXT_PUBLIC_API_BASE);
+
   return (
     <main>
       <section className="flex flex-col items-center text-center mt-30 gap-6">
@@ -85,8 +86,7 @@ export default function Home() {
             Enrich and personalize learning
           </h2>
           <p className="text-foreground-500">
-            Drive student agency with tools that meet students where they are –
-            and build skills for their future.
+            Drive student agency with tools that meet students where they are – and build skills for their future.
           </p>
           <Button color="primary" className="w-fit">
             Explore all features
@@ -104,21 +104,21 @@ export default function Home() {
 
         <Tabs aria-label="Audience">
           <Tab key="leaders" title="Education Leaders">
-            <p className="mt-4 text-foreground-500 flex gap-4">Enrich and personalize learning<br/>Drive student agency with tools that meet students where they are – and build skills for their future.
+            <div className="mt-4 text-foreground-500 flex gap-4">Enrich and personalize learning<br/>Drive student agency with tools that meet students where they are – and build skills for their future.
               <Image alt="HeroUI hero Image" src={"https://lh3.googleusercontent.com/BRmiR4Nvv--5Iv8eeYvv9fWKlFryNZDUixSidLsuQsOTg5wZCT3PtysMCI59f95a1VUioSeQm0csTjsO-1WXsWNOlDM3hP1j41YjlGK7kALLuy8FKQ=w2592-v0-e30"} />
-            </p>
+            </div>
           </Tab>
           <Tab key="educators" title="Educators">
-            <p className="mt-4 text-foreground-500 flex gap-4">
+            <div className="mt-4 text-foreground-500 flex gap-4">
               Amplify instruction with tools that simplify everyday tasks<br/>Boost instructional time with tools purpose-built for teaching, productivity, and collaboration.
               <Image alt="HeroUI hero Image" src={"https://lh3.googleusercontent.com/BRmiR4Nvv--5Iv8eeYvv9fWKlFryNZDUixSidLsuQsOTg5wZCT3PtysMCI59f95a1VUioSeQm0csTjsO-1WXsWNOlDM3hP1j41YjlGK7kALLuy8FKQ=w2592-v0-e30"} />
-            </p>
+            </div>
           </Tab>
           <Tab key="it" title="IT Administrators">
-            <p className="mt-4 text-foreground-500 flex gap-4">
+            <div className="mt-4 text-foreground-500 flex gap-4">
               Operate with solutions designed to gain visibility, insights, and control<br/>Create learning environments that are easier to manage and support educators and students with connected, safer tools.
               <Image alt="HeroUI hero Image" src={"https://lh3.googleusercontent.com/BRmiR4Nvv--5Iv8eeYvv9fWKlFryNZDUixSidLsuQsOTg5wZCT3PtysMCI59f95a1VUioSeQm0csTjsO-1WXsWNOlDM3hP1j41YjlGK7kALLuy8FKQ=w2592-v0-e30"} />
-            </p>
+            </div>
           </Tab>
         </Tabs>
       </section>
