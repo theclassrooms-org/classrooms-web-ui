@@ -1,0 +1,33 @@
+name: CI - Pull Request Checking
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout source
+      - uses: actions/checkout@v4
+
+      # Setup Node
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Lint
+      - name: Run ESLint
+        run: npm run lint
+
+      # Build (Next.js)
+      - name: Build Next.js app
+        run: npm run build
