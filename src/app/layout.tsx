@@ -1,4 +1,6 @@
 import './globals.css'
+import "swiper/css";
+import "swiper/css/pagination";
 import { Inter } from 'next/font/google'
 import { HeroUIProvider } from "@heroui/react"
 import AppHeader from '@/components/app.header'
