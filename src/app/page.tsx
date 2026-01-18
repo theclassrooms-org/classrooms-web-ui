@@ -1,6 +1,5 @@
 "use client"
 
-import AppFooter from "@/components/app.footer";
 import AppLogo from "@/components/app.logo";
 import {
   Image,
@@ -9,7 +8,9 @@ import {
   CardBody,
   Tabs,
   Tab,
+  Link,
 } from "@heroui/react";
+import NextLink from "next/link";
 
 type AITool = {
   title: string;
@@ -57,7 +58,14 @@ export default function Home() {
         </p>
         <div className="flex gap-4">
           <Button size="lg" color="primary">Contact sales</Button>
-          <Button size="lg" variant="bordered">Sign in to Classroom</Button>
+          <Button
+            as={NextLink}
+            href="/login"
+            size="lg"
+            variant="bordered"
+          >
+            Sign in to Classroom
+          </Button>
         </div>
       </section>
 
@@ -72,7 +80,7 @@ export default function Home() {
                 <p className="text-sm text-foreground-500">
                   {sec.description}
                 </p>
-                <Button size="sm">{sec.button}</Button>
+                <Button variant="solid" color="primary" size="sm">{sec.button}</Button>
               </CardBody>
             </Card>
           ))}

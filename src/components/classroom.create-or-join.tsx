@@ -18,7 +18,8 @@ export default function CreateOrJoinClassDropdown() {
       <DropdownTrigger>
         <Button
           isIconOnly
-          variant="light"
+          variant="flat"
+          color="primary"
           radius="full"
           aria-label="Create or join class"
         >
