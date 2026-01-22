@@ -2,10 +2,8 @@ import './globals.css'
 import "swiper/css";
 import "swiper/css/pagination";
 import { Inter } from 'next/font/google'
-import { HeroUIProvider } from "@heroui/react"
-import AppHeader from '@/components/app.header'
-import AppFooter from '@/components/app.footer'
 import { Metadata } from 'next';
+import ClientLayout from './client.layout';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -69,15 +67,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <HeroUIProvider>
-          <div className="min-h-screen flex flex-col">
-            <AppHeader />
-            <div className="flex-1">
-              {children}
-            </div>
-            <AppFooter />
-          </div>
-        </HeroUIProvider>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )

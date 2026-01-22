@@ -10,6 +10,7 @@ import {
   Divider,
   Link,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 function GoogleIcon() {
   return (
@@ -35,6 +36,10 @@ function GoogleIcon() {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
+  console.log("google", process.env.NEXT_PUBLIC_GOOGLE_LOGIN)
+  console.log("API BASE:", process.env.NEXT_PUBLIC_API_BASE);
+
   return (
     <div className="flex items-center justify-center md:px-4 px-2">
       <Card className="w-full max-w-md md:px-4 px-2">
@@ -51,6 +56,7 @@ export default function LoginPage() {
             variant="bordered"
             size="lg"
             startContent={<GoogleIcon />}
+            onClick={(e) => router.push(`${process.env.NEXT_PUBLIC_GOOGLE_LOGIN}`)}
           >
             Continue with Google
           </Button>
