@@ -52,6 +52,10 @@ export default function SignUpPage() {
             variant="bordered"
             size="lg"
             startContent={<GoogleIcon />}
+            onClick={() => {
+              const url = process.env.NEXT_PUBLIC_GOOGLE_LOGIN;
+              if (url) window.location.href = url;
+            }}
           >
             Sign up with Google
           </Button>

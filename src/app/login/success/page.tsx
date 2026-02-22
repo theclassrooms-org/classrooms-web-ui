@@ -4,29 +4,24 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import axios from "axios";
+import { axiosAuth } from "@/lib/axios-auth";
 import { Card, CardBody, CardHeader, Button } from "@heroui/react";
 import { AppDispatch, RootState } from "@/store";
 import { setUser } from "@/store/userSlice";
-import { Text } from "lucide-react";
 
 const LoginSuccessPage = () => {
-  const dispatch = useDispatch<AppDispatch>(); // Use the correct dispatch type
-  const user = useSelector((state: RootState) => state.user.user); // Use RootState to get the correct user type
+  const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: RootState) => state.user.user);
   const router = useRouter();
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:8160/api/my-info", {
-          withCredentials: true, // Send cookie with request
-        });
-
-        // Dispatch the user data to Redux
-        dispatch(setUser(response.data.user));
+        const response = await axiosAuth.get("/api/my-info");
+        dispatch(setUser(response.data));
       } catch (error) {
         console.error("Error fetching user data:", error);
-        router.push("/login"); // Redirect to login on error
+        router.push("/login");
       }
     };
 
@@ -51,7 +46,7 @@ const LoginSuccessPage = () => {
           <p className="text-sm text-foreground-500">You are successfully logged in.</p>
         </CardHeader>
         <CardBody className="text-center">
-          <Text className="mb-4">Your role: {user?.role}</Text>
+          <span className="mb-4 block">Your role: {user?.role}</span>
 
           <Button
             color="primary"

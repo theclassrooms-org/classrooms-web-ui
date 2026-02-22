@@ -11,30 +11,34 @@ import {
   Pagination,
 } from "@heroui/react";
 import { useMemo, useState } from "react";
+import {useUser} from "@/hooks/useUser";
 
 const sortOptions = [
   { key: "name,asc", label: "Name (A → Z)" },
   { key: "name,desc", label: "Name (Z → A)" },
-  { key: "date-desc", label: "Newest joined" },
-  { key: "date-asc", label: "Oldest joined" },
+  { key: "updatedAt,desc", label: "Newest joined" },
+  { key: "updatedAt,asc", label: "Oldest joined" },
 ];
 
 export default function ClassroomsPage() {
   const [search, setSearch] = useState("");
-  const [sortKey, setSortKey] = useState("date-desc");
+  const [sortKey, setSortKey] = useState("updatedAt,desc");
   const [page, setPage] = useState(1);
+  const { user } = useUser();
+  console.log("?!user?.id", !user?.id, user)
 
   const { data, loading, error } = useQuery<ClassroomPageResponse>(
     GET_CLASSROOM_PAGE,
     {
       variables: {
-        instructorId: "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+        instructorId: user?.id,
         pageable: {
           page: page - 1,
           size: 6,
           sorts: [sortKey]
         },
       },
+      skip: !user?.id,
       fetchPolicy: "cache-and-network",
     }
   );

@@ -12,10 +12,17 @@ import {
   Link,
   Button,
   Input,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Avatar,
 } from "@heroui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/navigation";
 import CreateOrJoinClassDropdown from "./classroom.create-or-join";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, User, Settings, LogOut } from "lucide-react";
+import { useUser } from "@/hooks/useUser";
 
 export const AcmeLogo = () => {
   return (
@@ -32,6 +39,13 @@ export const AcmeLogo = () => {
 
 export default function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { user, isAuthenticated, clearUser } = useUser();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    clearUser();
+    router.push("/login");
+  };
 
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
@@ -75,14 +89,62 @@ export default function AppHeader() {
 
       <NavbarContent justify="end">
         <CreateOrJoinClassDropdown />
-        <NavbarItem className="hidden lg:flex">
-          <Link as={NextLink} href="/login">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={NextLink} color="primary" href="/signup" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
+        {isAuthenticated && user ? (
+          <Dropdown placement="bottom-end">
+            <DropdownTrigger>
+              <Button
+                variant="flat"
+                className="gap-2 min-w-0 px-2"
+                aria-label="User menu"
+              >
+                {user?.avatar && <Avatar
+                    src={user?.avatar}
+                    name={user.name}
+                    size="sm"
+                    className="flex-shrink-0"
+                />}
+                <span className="hidden sm:inline truncate max-w-[120px]">
+                  {user.name || user.username}
+                </span>
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="User menu">
+              <DropdownItem
+                key="profile"
+                startContent={<User size={18} />}
+                onPress={() => router.push("/profile")}
+              >
+                Profile
+              </DropdownItem>
+              <DropdownItem
+                key="settings"
+                startContent={<Settings size={18} />}
+                onPress={() => router.push("/settings")}
+              >
+                Settings
+              </DropdownItem>
+              <DropdownItem
+                key="logout"
+                startContent={<LogOut size={18} />}
+                color="danger"
+                onPress={handleLogout}
+              >
+                Logout
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        ) : (
+          <>
+            <NavbarItem className="hidden lg:flex">
+              <Link as={NextLink} href="/login">Login</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button as={NextLink} color="primary" href="/signup" variant="flat">
+                Sign Up
+              </Button>
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
 
       <NavbarMenu>
