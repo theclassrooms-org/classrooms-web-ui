@@ -1,5 +1,6 @@
 "use client";
 
+import { Classroom } from "@/types/classroom.type";
 import {
   Card,
   CardBody,
@@ -10,46 +11,44 @@ import {
 import Link from "next/link";
 
 interface ClassroomCardProps {
-  id: string;
-  name: string;
-  teacher: string;
-  joinedAt: string;
-  imageUrl: string;
+  classroom: Classroom;
 }
 
 export default function ClassroomCard({
-  id,
-  name,
-  teacher,
-  joinedAt,
-  imageUrl,
+  classroom,
 }: ClassroomCardProps) {
   return (
     <Card shadow="sm" className="w-full">
       {/* Cover image */}
       <Image
         removeWrapper
-        src={imageUrl}
-        alt={name}
+        src={classroom.thumbnailUrl || classroom.bannerUrl}
+        alt={classroom.name}
         className="h-40 w-full object-cover"
       />
 
       <CardBody className="gap-2">
-        <h3 className="text-lg font-semibold">{name}</h3>
+        <h3 className="text-lg font-semibold">
+          {classroom.name}
+        </h3>
 
         <p className="text-sm text-default-500">
-          Teacher: {teacher}
+          Instructor: {classroom.instructor.name}
         </p>
 
         <p className="text-xs text-default-400">
-          Joined at: {joinedAt}
+          Code: {classroom.classCode}
+        </p>
+
+        <p className="text-xs text-default-400">
+          Status: {classroom.status}
         </p>
       </CardBody>
 
       <CardFooter>
         <Button
           as={Link}
-          href={`/classrooms/${id}/stream`}
+          href={`/classrooms/${classroom.id}/stream`}
           color="primary"
           variant="flat"
           size="sm"
